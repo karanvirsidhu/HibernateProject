@@ -12,7 +12,16 @@ public class UserDetails {
     @Temporal(TemporalType.DATE)
     private Date dateOfJoining;
 
-    private String address;
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Lob
     private String description;
 
@@ -24,13 +33,7 @@ public class UserDetails {
         this.dateOfJoining = dateOfJoining;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getDescription() {
         return description;

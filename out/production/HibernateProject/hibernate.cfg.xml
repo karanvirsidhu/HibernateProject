@@ -29,7 +29,7 @@
 
     <!-- Drop and re-create the database schema on startup -->
     <property name="hbm2ddl.auto">create</property>
-    <mapping class="org.karanvir.dto.UserDetails"/>
+    <mapping class="org.karanvir.dto.UserDetailsUsingCollection"/>
 </session-factory>
 
 </hibernate-configuration>

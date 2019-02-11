@@ -4,14 +4,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.karanvir.dto.Address;
-import org.karanvir.dto.UserDetails;
+import org.karanvir.dto.UserDetailsUsingCollection;
 
 import java.util.Date;
 
 public class HibernateTest {
 
     public static void main(String[] args){
-        UserDetails user = new UserDetails();
+        UserDetailsUsingCollection user = new UserDetailsUsingCollection();
 
         Address homeAddr = new Address();
         homeAddr.setStreetNumber(2);
@@ -25,15 +25,14 @@ public class HibernateTest {
 
         user.setUserName("Karanvir");
         user.setDateOfJoining(new Date());
-        user.setHomeAddress(homeAddr);
-        user.setOfficeAddress(officeAddr);
+        user.getListOfAddresses().add(homeAddr);
+        user.getListOfAddresses().add(officeAddr);
         user.setDescription("Master of software engineering");
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
-        
         session.getTransaction().commit();
         session.close();
 
@@ -41,7 +40,7 @@ public class HibernateTest {
 
         session = sessionFactory.openSession();
         session.beginTransaction();
-        session.get(UserDetails.class, 1);
+        session.get(UserDetailsUsingCollection.class, 1);
         session.getTransaction().commit();
         session.close();
 

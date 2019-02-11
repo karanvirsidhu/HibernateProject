@@ -49,8 +49,6 @@ public class UserDetails {
         this.dateOfJoining = dateOfJoining;
     }
 
-
-
     public String getDescription() {
         return description;
     }
@@ -58,8 +56,6 @@ public class UserDetails {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     public int getUserId() {
         return userId;

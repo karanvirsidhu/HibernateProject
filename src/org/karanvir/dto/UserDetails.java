@@ -11,15 +11,31 @@ public class UserDetails {
     private String userName;
     @Temporal(TemporalType.DATE)
     private Date dateOfJoining;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="streetNumber", column = @Column(name = "Home_Street_Number")),
+            @AttributeOverride(name="city", column = @Column(name = "Home_City")),
+            @AttributeOverride(name="state", column = @Column(name = "Home_State")),
+            @AttributeOverride(name="pinCode", column = @Column(name = "Home_Pincode"))
+    })
+    private Address homeAddress;
+    @Embedded
+    private Address officeAddress;
 
-    private Address address;
-
-    public Address getAddress() {
-        return address;
+    public Address getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public Address getOfficeAddress() {
+        return officeAddress;
+    }
+
+    public void setOfficeAddress(Address officeAddress) {
+        this.officeAddress = officeAddress;
     }
 
     @Lob

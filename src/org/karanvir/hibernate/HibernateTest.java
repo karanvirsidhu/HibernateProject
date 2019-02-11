@@ -13,23 +13,21 @@ public class HibernateTest {
     public static void main(String[] args){
         UserDetails user = new UserDetails();
 
-        Address addr = new Address();
-        addr.setStreetNumber(1);
-        addr.setCity("Abohar");
-        addr.setState("Punjab");
-        addr.setPinCode("152116");
+        Address homeAddr = new Address();
+        homeAddr.setStreetNumber(2);
+        homeAddr.setCity("Abohar");
+        homeAddr.setState("Punjab");
+        homeAddr.setPinCode("152116");
+
+        Address officeAddr = new Address();
+        officeAddr.setStreetNumber(700);
+        officeAddr.setCity("Montreal");
 
         user.setUserName("Karanvir");
         user.setDateOfJoining(new Date());
-        user.setAddress(addr);
+        user.setHomeAddress(homeAddr);
+        user.setOfficeAddress(officeAddr);
         user.setDescription("Master of software engineering");
-
-        UserDetails user2 = new UserDetails();
-
-        user2.setUserName("Kanav");
-        user2.setDateOfJoining(new Date());
-
-        user2.setDescription("ECE");
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();

@@ -1,9 +1,11 @@
 package org.karanvir.dto;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "User_Details_Collection")
 public class UserDetailsUsingCollection {
@@ -16,13 +18,15 @@ public class UserDetailsUsingCollection {
     private Date dateOfJoining;
 
     @ElementCollection
-    private Set<Address> listOfAddresses = new HashSet<>();
+    @GenericGenerator(name="hilo-gen",strategy = "seqhilo")
+    @CollectionId(columns = {@Column(name="Address_Id")}, type =@Type(type="long"), generator = "hilo-gen")
+    private List<Address> listOfAddresses = new ArrayList<>();
 
-    public Set<Address> getListOfAddresses() {
+    public List<Address> getListOfAddresses() {
         return listOfAddresses;
     }
 
-    public void setListOfAddresses(Set<Address> listOfAddresses) {
+    public void setListOfAddresses(List<Address> listOfAddresses) {
         this.listOfAddresses = listOfAddresses;
     }
 

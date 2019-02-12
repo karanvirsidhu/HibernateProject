@@ -16,8 +16,8 @@ public class UserDetailsUsingCollection {
     private String userName;
     @Temporal(TemporalType.DATE)
     private Date dateOfJoining;
-
-    @ElementCollection
+    //to change the default lazy initialization to eager.
+    @ElementCollection(fetch = FetchType.EAGER)
     @GenericGenerator(name="hilo-gen",strategy = "seqhilo")
     @CollectionId(columns = {@Column(name="Address_Id")}, type =@Type(type="long"), generator = "hilo-gen")
     private List<Address> listOfAddresses = new ArrayList<>();

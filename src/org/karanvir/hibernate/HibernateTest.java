@@ -40,9 +40,12 @@ public class HibernateTest {
 
         session = sessionFactory.openSession();
         session.beginTransaction();
-        session.get(UserDetailsUsingCollection.class, 1);
+        user= (UserDetailsUsingCollection) session.get(UserDetailsUsingCollection.class, 1);
+        //session.close();  if the session is closed before then it throws lazy initialization exception
+
         session.getTransaction().commit();
         session.close();
+        System.out.println(user.getListOfAddresses().size());
 
     }
 }
